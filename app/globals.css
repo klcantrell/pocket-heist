@@ -51,3 +51,8 @@ svg.logo {
 .btn:hover {
   @apply bg-secondary;
 }
+
+/* preview helpers */
+.avatar-preview {
+  @apply flex gap-4 mt-4;
+}
