@@ -1,0 +1,9 @@
+@reference "../../app/globals.css";
+
+.fieldGroup {
+  @apply flex flex-col gap-1;
+}
+
+.label {
+  @apply text-sm text-body;
+}
