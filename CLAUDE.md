@@ -18,29 +18,47 @@ Pocket Heist is a Next.js 16 starter project ("Tiny missions. Big office mischie
 ## Architecture
 
 **Next.js App Router with route groups:**
+
 - `app/(public)/` — Unauthenticated pages (home, login, signup, preview)
 - `app/(dashboard)/` — Authenticated pages (heists list, create, details). Dashboard layout includes the Navbar.
 
 **Component conventions:**
+
 - Components live in `components/<Name>/` with barrel exports via `index.ts`
 - Styling uses CSS Modules (`*.module.css`) alongside Tailwind utilities
+- CSS Modules reference the theme with `@reference "../../app/globals.css"`
 - Icons from `lucide-react`
 
 **Styling:**
-- Tailwind CSS 4 via `@tailwindcss/postcss`
+
+- Tailwind CSS 4 via `@tailwindcss/postcss` (no tailwind.config — theme lives in globals.css `@theme`)
 - Custom theme defined in `app/globals.css` (primary purple `#C27AFF`, secondary pink `#FB64B6`, dark backgrounds, Inter font)
-- Shared layout utilities: `.page-content` (max-width container), `.center-content` (centered viewport), `.form-title`
+- Shared layout utilities: `.page-content` (max-width container), `.center-content` (centered viewport), `.form-title`, `.btn`, `.form-input`
 
 **Testing:**
+
 - Vitest with jsdom environment and global APIs enabled
-- React Testing Library for component tests
+- React Testing Library for component tests; `@testing-library/user-event` for interactions
 - Tests live in `tests/` mirroring the source structure
 - Setup file: `vitest.setup.ts` (imports `@testing-library/jest-dom/vitest`)
+- Mock `next/link` as a simple `<a>` tag in component tests
+- Prefer accessibility queries (`getByRole`, `getByLabelText`) over test IDs
+
+**Feature workflow:**
+
+- Specs go in `_specs/` (see `_specs/template.md` for format)
+- Implementation plans go in `_plans/`
+- Feature branches use `claude/feature/<feature-name>` naming
 
 **Path alias:** `@/*` maps to the project root (e.g., `@/components/Navbar`).
 
-## Additional Coding Preferences
+## Coding Preferences
+
 - Do NOT use semicolons for JavaScript or TypeScript code.
-- Do NOT apply tailwind classes directly in component templates unless essential or just 1 at most. If an element needs more than a single tailwind class, combine them into a custom class using the '@apply' directive.
+- Do NOT apply tailwind classes directly in component templates unless essential or just 1 at most. If an element needs more than a single tailwind class, combine them into a custom class using the `@apply` directive.
 - Use minimal project dependencies where possible.
-- Use the 'git switch -c' command to switch to new branches, not 'git checkout.
+- Use the `git switch -c` command to switch to new branches, not `git checkout`.
+
+## Checking Documentation
+
+- **important**: When implementing any lib/framework-specific features, ALWAYS check the approrpiate lib/framework documentation using the Context MCP server before writing any code.
