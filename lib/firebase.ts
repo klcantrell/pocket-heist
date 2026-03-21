@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBXENd-OTUd16jDYouLit1Y3CU2Ld4Yh18",
+  apiKey: "REDACTED",
   authDomain: "kal-pocket-heist-website.firebaseapp.com",
   projectId: "kal-pocket-heist-website",
   storageBucket: "kal-pocket-heist-website.firebasestorage.app",
