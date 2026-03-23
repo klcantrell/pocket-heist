@@ -10,6 +10,7 @@ const mockUseUser = vi.mocked(useUser)
 
 // component imports
 import Navbar from "@/components/Navbar"
+import { User } from "firebase/auth"
 
 describe("Navbar", () => {
   it("renders the main heading", () => {
@@ -39,7 +40,7 @@ describe("Navbar", () => {
 
   it("shows logout button when user is authenticated", () => {
     mockUseUser.mockReturnValue({
-      user: { uid: "123" } as any,
+      user: { uid: "123" } as User,
       isLoading: false,
       logout: vi.fn(),
     })
