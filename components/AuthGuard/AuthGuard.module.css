@@ -1,0 +1,5 @@
+@reference "../../app/globals.css";
+
+.loader {
+  @apply flex items-center justify-center min-h-lvh;
+}

@@ -1,3 +1,5 @@
+import AuthGuard from "@/components/AuthGuard"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <main className="public">
-      {children}
+      <AuthGuard mode="requireGuest">{children}</AuthGuard>
     </main>
   )
 }
