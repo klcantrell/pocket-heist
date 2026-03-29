@@ -1,0 +1,21 @@
+@reference "../../../app/globals.css";
+
+.section {
+  @apply mb-8;
+}
+
+.list {
+  @apply flex flex-col gap-2 mt-3;
+}
+
+.listItem {
+  @apply px-4 py-3 rounded-lg bg-white/5 text-sm;
+}
+
+.stateText {
+  @apply text-sm text-white/50 mt-3;
+}
+
+.errorText {
+  @apply text-sm text-error mt-3;
+}
