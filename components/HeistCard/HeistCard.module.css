@@ -1,0 +1,39 @@
+@reference "../../app/globals.css";
+
+.card {
+  @apply flex flex-col rounded-[10px] gap-3 bg-lighter;
+  padding: 21px;
+  border: 0.83px solid #1e2939;
+}
+
+.title {
+  @apply text-base font-normal text-heading no-underline;
+}
+
+.title:hover {
+  @apply underline;
+}
+
+.row {
+  @apply flex items-center gap-2;
+}
+
+.label {
+  @apply text-sm text-body;
+}
+
+.primaryValue {
+  @apply text-sm text-primary;
+}
+
+.secondaryValue {
+  @apply text-sm text-secondary;
+}
+
+.overdue {
+  @apply text-sm text-primary font-medium;
+}
+
+.icon {
+  @apply text-body shrink-0;
+}
