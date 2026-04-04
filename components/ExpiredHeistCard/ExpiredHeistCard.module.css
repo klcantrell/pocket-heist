@@ -1,0 +1,81 @@
+@reference "../../app/globals.css";
+
+.cardBase {
+  @apply flex flex-col gap-2 rounded-[10px];
+  padding: 17px;
+}
+
+.cardSuccess {
+  composes: cardBase;
+  background: rgba(16, 24, 40, 0.5);
+  border: 0.833px solid rgba(30, 41, 57, 0.5);
+}
+
+.cardFailed {
+  composes: cardBase;
+  background: rgba(16, 24, 40, 0.3);
+  border: 0.833px solid rgba(30, 41, 57, 0.3);
+}
+
+.topRow {
+  @apply flex items-center gap-2 min-w-0;
+}
+
+.bottomRow {
+  @apply flex items-center gap-2;
+}
+
+.title {
+  @apply text-sm font-normal text-heading no-underline truncate flex-1 min-w-0;
+}
+
+.title:hover {
+  @apply underline;
+}
+
+.label {
+  @apply text-xs text-body shrink-0;
+}
+
+.icon {
+  @apply text-body shrink-0;
+}
+
+.successIcon {
+  @apply text-success shrink-0;
+}
+
+.failedIcon {
+  @apply text-error shrink-0;
+}
+
+.primaryValue {
+  @apply text-xs text-primary;
+}
+
+.secondaryValue {
+  @apply text-xs text-secondary;
+}
+
+.badgeBase {
+  @apply shrink-0 uppercase;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  line-height: 16px;
+}
+
+.badgeSuccess {
+  composes: badgeBase;
+  color: var(--color-success);
+  background: rgba(5, 223, 114, 0.05);
+  border: 0.833px solid rgba(5, 223, 114, 0.2);
+}
+
+.badgeFailed {
+  composes: badgeBase;
+  color: var(--color-error);
+  background: rgba(255, 100, 103, 0.05);
+  border: 0.833px solid rgba(255, 100, 103, 0.2);
+}

@@ -32,7 +32,7 @@ describe("HeistsPage", () => {
       screen.getByRole("heading", { name: "Your Active Heists" }),
     ).toBeInTheDocument()
     expect(
-      screen.getByRole("heading", { name: "Heists You've Assigned" }),
+      screen.getByRole("heading", { name: "Heists You're Assigned" }),
     ).toBeInTheDocument()
     expect(
       screen.getByRole("heading", { name: "All Expired Heists" }),
@@ -42,10 +42,36 @@ describe("HeistsPage", () => {
   it("renders heist titles from each section", () => {
     mockUseHeists.mockImplementation((filter) => {
       if (filter === "active")
-        return mockReturn([{ id: "1", title: "Steal the stapler" }])
+        return mockReturn([
+          {
+            id: "1",
+            title: "Steal the stapler",
+            deadline: new Date(2099, 3, 5),
+            createdAt: new Date(2026, 2, 30),
+            assignedToCodename: "Agent Wolf",
+            createdByCodename: "Agent Fox",
+          },
+        ])
       if (filter === "assigned")
-        return mockReturn([{ id: "2", title: "Swap the coffee" }])
-      return mockReturn([{ id: "3", title: "Old heist" }])
+        return mockReturn([
+          {
+            id: "2",
+            title: "Swap the coffee",
+            deadline: new Date(2099, 3, 5),
+            createdAt: new Date(2026, 2, 30),
+            assignedToCodename: "Agent Wolf",
+            createdByCodename: "Agent Fox",
+          },
+        ])
+      return mockReturn([
+        {
+          id: "3",
+          title: "Old heist",
+          deadline: new Date(2026, 0, 1),
+          assignedToCodename: "Agent Wolf",
+          createdByCodename: "Agent Fox",
+        },
+      ])
     })
 
     render(<HeistsPage />)
@@ -62,7 +88,7 @@ describe("HeistsPage", () => {
 
     expect(screen.getByText("No active heists right now.")).toBeInTheDocument()
     expect(
-      screen.getByText("You haven't assigned any heists yet."),
+      screen.getByText("You haven't been assigned any heists yet."),
     ).toBeInTheDocument()
     expect(screen.getByText("No expired heists yet.")).toBeInTheDocument()
   })
