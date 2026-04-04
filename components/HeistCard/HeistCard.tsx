@@ -1,18 +1,11 @@
 import Link from "next/link"
 import { Clock, UserRound, Calendar } from "lucide-react"
 import type { Heist } from "@/types/firestore"
+import { formatDate } from "@/lib/format"
 import styles from "./HeistCard.module.css"
 
 function isOverdue(heist: Heist): boolean {
   return heist.deadline < new Date() && heist.finalStatus === null
-}
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  })
 }
 
 function formatDeadline(date: Date): string {

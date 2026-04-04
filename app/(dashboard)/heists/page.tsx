@@ -2,6 +2,7 @@
 
 import { useHeists, type HeistFilter } from "@/hooks/useHeists"
 import { HeistCard, HeistCardSkeleton } from "@/components/HeistCard"
+import { ExpiredHeistCard } from "@/components/ExpiredHeistCard"
 import type { Heist } from "@/types/firestore"
 import styles from "./page.module.css"
 
@@ -57,8 +58,8 @@ function HeistSection({
           {heists.length > 0 && (
             <ul className={styles.list}>
               {heists.map((heist) => (
-                <li key={heist.id} className={styles.listItem}>
-                  {heist.title}
+                <li key={heist.id}>
+                  <ExpiredHeistCard heist={heist} />
                 </li>
               ))}
             </ul>
