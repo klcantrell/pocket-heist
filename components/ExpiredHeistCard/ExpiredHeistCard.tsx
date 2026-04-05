@@ -2,13 +2,13 @@ import Link from "next/link"
 import { CircleCheck, CircleX, Calendar, UserRound } from "lucide-react"
 import type { Heist } from "@/types/firestore"
 import { formatDate } from "@/lib/format"
+import Badge from "@/components/Badge"
 import styles from "./ExpiredHeistCard.module.css"
 
 export default function ExpiredHeistCard({ heist }: { heist: Heist }) {
   const isSuccess = heist.finalStatus === "success"
   const StatusIcon = isSuccess ? CircleCheck : CircleX
   const cardClass = isSuccess ? styles.cardSuccess : styles.cardFailed
-  const badgeClass = isSuccess ? styles.badgeSuccess : styles.badgeFailed
   const statusIconClass = isSuccess ? styles.successIcon : styles.failedIcon
 
   return (
@@ -20,7 +20,9 @@ export default function ExpiredHeistCard({ heist }: { heist: Heist }) {
         </Link>
         <Calendar size={12} className={styles.icon} aria-hidden="true" />
         <span className={styles.label}>{formatDate(heist.deadline)}</span>
-        <span className={badgeClass}>{isSuccess ? "SUCCESS" : "FAILED"}</span>
+        <Badge variant={isSuccess ? "success" : "danger"}>
+          {isSuccess ? "SUCCESS" : "FAILED"}
+        </Badge>
       </div>
 
       <div className={styles.bottomRow}>
