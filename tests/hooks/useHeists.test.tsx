@@ -9,6 +9,7 @@ vi.mock("firebase/firestore", () => ({
   collection: vi.fn(() => ({ _col: true })),
   query: vi.fn((_col, ...constraints) => ({ _col, constraints })),
   where: vi.fn((field, op, value) => ({ field, op, value })),
+  or: vi.fn((...conditions) => ({ type: "or", conditions })),
   onSnapshot: vi.fn((_q, onNext, onError) => {
     snapshotCallback = onNext
     errorCallback = onError
