@@ -3,6 +3,12 @@ import { doc, onSnapshot } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { COLLECTIONS, heistConverter, type Heist } from "@/types/firestore"
 
+interface Snapshot {
+  heist: Heist | null
+  id: string
+  error: Error | null
+}
+
 interface UseHeistResult {
   heist: Heist | null
   isLoading: boolean
@@ -10,32 +16,31 @@ interface UseHeistResult {
 }
 
 export function useHeist(id: string): UseHeistResult {
-  const [heist, setHeist] = useState<Heist | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
+  const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
 
   useEffect(() => {
     const ref = doc(db, COLLECTIONS.HEISTS, id).withConverter(heistConverter)
 
     const unsubscribe = onSnapshot(
       ref,
-      (snapshot) => {
-        if (snapshot.exists()) {
-          setHeist(snapshot.data())
-        } else {
-          setHeist(null)
-        }
-        setIsLoading(false)
-        setError(null)
+      (snap) => {
+        setSnapshot({
+          heist: snap.exists() ? snap.data() : null,
+          id,
+          error: null,
+        })
       },
       (err) => {
-        setError(err)
-        setIsLoading(false)
+        setSnapshot({ heist: null, id, error: err })
       },
     )
 
     return unsubscribe
   }, [id])
 
-  return { heist, isLoading, error }
+  if (!snapshot || snapshot.id !== id) {
+    return { heist: null, isLoading: true, error: null }
+  }
+
+  return { heist: snapshot.heist, isLoading: false, error: snapshot.error }
 }

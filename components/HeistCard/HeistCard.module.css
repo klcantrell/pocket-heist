@@ -3,7 +3,7 @@
 .card {
   @apply flex flex-col rounded-[10px] gap-3 bg-lighter;
   padding: 21px;
-  border: 0.83px solid #1e2939;
+  border: 0.83px solid var(--color-border);
 }
 
 .title {

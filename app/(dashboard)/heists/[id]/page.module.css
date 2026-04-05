@@ -22,7 +22,7 @@
 
 .card {
   @apply rounded-[10px] bg-lighter p-6;
-  border: 0.83px solid #1e2939;
+  border: 0.83px solid var(--color-border);
 }
 
 .cardTitle {
@@ -71,6 +71,14 @@
 
 .deadlineText {
   @apply text-xs text-body mt-1;
+}
+
+.countdownIcon {
+  @apply text-body;
+}
+
+.infoIcon {
+  @apply inline mr-1 text-body;
 }
 
 .stateText {

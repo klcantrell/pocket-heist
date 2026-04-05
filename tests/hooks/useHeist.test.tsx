@@ -88,6 +88,30 @@ describe("useHeist", () => {
     expect(result.current.isLoading).toBe(false)
   })
 
+  it("resets loading state and unsubscribes when id changes", () => {
+    const { result, rerender } = renderHook(
+      ({ id }) => useHeist(id),
+      { initialProps: { id: "heist-1" } },
+    )
+
+    act(() => {
+      snapshotCallback?.({
+        exists: () => true,
+        data: () => ({ id: "heist-1", title: "First Heist" }),
+      })
+    })
+
+    expect(result.current.isLoading).toBe(false)
+    expect(result.current.heist?.title).toBe("First Heist")
+
+    mockUnsubscribe.mockClear()
+    rerender({ id: "heist-2" })
+
+    expect(mockUnsubscribe).toHaveBeenCalledTimes(1)
+    expect(result.current.isLoading).toBe(true)
+    expect(result.current.heist).toBeNull()
+  })
+
   it("cleans up subscription on unmount", () => {
     const { unmount } = renderHook(() => useHeist("heist-1"))
 

@@ -21,7 +21,7 @@ function TimeRemaining({ deadline }: { deadline: Date }) {
 }
 
 function formatDeadline(date: Date): string {
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -78,7 +78,7 @@ function HeistDetailsContent({ id }: { id: string }) {
         <div className={styles.card}>
           <h3 className={styles.cardTitle}>Time Remaining</h3>
           <div className={styles.countdown}>
-            <Clock size={20} className="text-body" />
+            <Clock size={20} className={styles.countdownIcon} />
             <TimeRemaining deadline={heist.deadline} />
           </div>
           <p className={styles.deadlineText}>
@@ -98,7 +98,7 @@ function HeistDetailsContent({ id }: { id: string }) {
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Assigned To</span>
               <span className={styles.infoValue}>
-                <UserRound size={12} className="inline mr-1 text-body" />
+                <UserRound size={12} className={styles.infoIcon} />
                 <span className={styles.primaryValue}>
                   {heist.assignedToCodename || "Unknown"}
                 </span>
@@ -108,7 +108,7 @@ function HeistDetailsContent({ id }: { id: string }) {
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Created By</span>
               <span className={styles.infoValue}>
-                <UserRound size={12} className="inline mr-1 text-body" />
+                <UserRound size={12} className={styles.infoIcon} />
                 <span className={styles.secondaryValue}>
                   {heist.createdByCodename || "Unknown"}
                 </span>
@@ -118,7 +118,7 @@ function HeistDetailsContent({ id }: { id: string }) {
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Created On</span>
               <span className={styles.infoValue}>
-                <Calendar size={12} className="inline mr-1 text-body" />
+                <Calendar size={12} className={styles.infoIcon} />
                 {formatDate(heist.createdAt)}
               </span>
             </div>
@@ -126,7 +126,7 @@ function HeistDetailsContent({ id }: { id: string }) {
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Status</span>
               <span className={styles.infoValue}>
-                <FileText size={12} className="inline mr-1 text-body" />
+                <FileText size={12} className={styles.infoIcon} />
                 {heist.finalStatus
                   ? heist.finalStatus === "success" ? "Completed" : "Failed"
                   : isExpired ? "Overdue" : "In Progress"}
