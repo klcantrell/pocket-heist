@@ -1,0 +1,90 @@
+@reference "../../../../app/globals.css";
+
+.backLink {
+  @apply inline-flex items-center gap-1 text-sm text-body no-underline mb-6;
+}
+
+.backLink:hover {
+  @apply text-heading;
+}
+
+.header {
+  @apply flex items-start justify-between gap-4 mb-8;
+}
+
+.title {
+  @apply text-2xl font-bold;
+}
+
+.details {
+  @apply flex flex-col gap-6;
+}
+
+.card {
+  @apply rounded-[10px] bg-lighter p-6;
+  border: 0.83px solid var(--color-border);
+}
+
+.cardTitle {
+  @apply text-xs uppercase tracking-wider text-body mb-3;
+}
+
+.description {
+  @apply text-sm text-heading leading-relaxed whitespace-pre-wrap;
+}
+
+.infoGrid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2;
+}
+
+.infoItem {
+  @apply flex flex-col gap-1;
+}
+
+.infoLabel {
+  @apply text-xs uppercase tracking-wider text-body;
+}
+
+.infoValue {
+  @apply text-sm text-heading;
+}
+
+.primaryValue {
+  @apply text-sm text-primary;
+}
+
+.secondaryValue {
+  @apply text-sm text-secondary;
+}
+
+.countdown {
+  @apply flex items-center gap-3;
+}
+
+.countdownValue {
+  @apply text-2xl font-bold text-primary tabular-nums;
+}
+
+.countdownExpired {
+  @apply text-2xl font-bold text-error;
+}
+
+.deadlineText {
+  @apply text-xs text-body mt-1;
+}
+
+.countdownIcon {
+  @apply text-body;
+}
+
+.infoIcon {
+  @apply inline mr-1 text-body;
+}
+
+.stateText {
+  @apply text-sm text-white/50 mt-3;
+}
+
+.errorText {
+  @apply text-sm text-error mt-3;
+}
